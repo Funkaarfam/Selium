@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SELIUM :: Cyber Security Division</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --cyan: #00f5ff;
+      --cyan2: #00c8d4;
+      --purple: #a855f7;
+      --pink: #ec4899;
+      --dark: #020b10;
+      --dark2: #050f17;
+      --dark3: #0a1a24;
+      --dark4: #0f2438;
+      --border: #0ff3;
+      --text: #b0eef5;
+      --dim: #4a8a94;
+      --accent: #00ff88;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 50%, var(--dark3) 100%);
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ANIMATED BACKGROUND */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663511048013/3rxq3ynAoXSnPenuRVocrP/selium-pattern-mDpbAMPNKoF6rwyETcPVRT.webp');
+      background-size: 400px 400px;
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 0;
+      animation: bgShift 20s linear infinite;
+    }
+
+    @keyframes bgShift {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(400px, 400px); }
+    }
+
+    .site {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 70px;
+      background: rgba(2, 11, 16, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid rgba(0, 245, 255, 0.2);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 8px 32px rgba(0, 245, 255, 0.1);
+    }
+
+    .nav-logo {
+      font-family: 'Orbitron', monospace;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--cyan);
+      letter-spacing: 0.2em;
+      text-shadow: 0 0 20px var(--cyan), 0 0 40px rgba(0, 245, 255, 0.3);
+      animation: logoGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes logoGlow {
+      0%, 100% { text-shadow: 0 0 20px var(--cyan), 0 0 40px rgba(0, 245, 255, 0.3); }
+      50% { text-shadow: 0 0 30px var(--cyan), 0 0 60px rgba(0, 245, 255, 0.5); }
+    }
+
+    .nav-logo span {
+      color: var(--purple);
+      opacity: 0.7;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dim);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      font-weight: 600;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+      text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-status {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 255, 136, 0.1);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      letter-spacing: 0.1em;
+      font-weight: 700;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse-dot 1.5s ease-in-out infinite;
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 0 0 var(--accent); }
+      50% { box-shadow: 0 0 0 8px rgba(0, 255, 136, 0); }
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      padding: 150px 2rem 80px;
+      text-align: center;
+      overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(0, 245, 255, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://d2xsxph8kpxj0f.cloudfront.net/310519663511048013/3rxq3ynAoXSnPenuRVocrP/selium-hero-1-mGRVHAK65j9vnDFY3T3VEr.webp');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      border: 1px solid rgba(0, 245, 255, 0.5);
+      padding: 8px 18px;
+      border-radius: 30px;
+      margin-bottom: 2rem;
+      background: rgba(0, 245, 255, 0.08);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);
+      animation: badgePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes badgePulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(0, 245, 255, 0.2); }
+      50% { box-shadow: 0 0 40px rgba(0, 245, 255, 0.4); }
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(48px, 10vw, 80px);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 60px rgba(0, 245, 255, 0.4), 0 0 120px rgba(168, 85, 247, 0.2);
+      animation: titleGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes titleGlow {
+      0%, 100% { text-shadow: 0 0 60px rgba(0, 245, 255, 0.4), 0 0 120px rgba(168, 85, 247, 0.2); }
+      50% { text-shadow: 0 0 80px rgba(0, 245, 255, 0.6), 0 0 160px rgba(168, 85, 247, 0.3); }
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(0, 245, 255, 0.3));
+    }
+
+    .hero-sub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(14px, 2.5vw, 18px);
+      color: var(--text);
+      letter-spacing: 0.15em;
+      margin-bottom: 3rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 4rem;
+    }
+
+    .btn-primary {
+      font-family: 'Orbitron', monospace;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border: 2px solid var(--cyan);
+      background: rgba(0, 245, 255, 0.1);
+      color: var(--cyan);
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn-primary:hover {
+      background: rgba(0, 245, 255, 0.2);
+      box-shadow: 0 0 40px rgba(0, 245, 255, 0.4), inset 0 0 20px rgba(0, 245, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+
+    .btn-ghost {
+      font-family: 'Orbitron', monospace;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border: 2px solid rgba(168, 85, 247, 0.5);
+      background: transparent;
+      color: var(--purple);
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--purple);
+      background: rgba(168, 85, 247, 0.1);
+      box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      padding-top: 3rem;
+      border-top: 2px solid rgba(0, 245, 255, 0.2);
+    }
+
+    .stat {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(0, 245, 255, 0.05);
+      border: 1px solid rgba(0, 245, 255, 0.2);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .stat:hover {
+      background: rgba(0, 245, 255, 0.1);
+      border-color: rgba(0, 245, 255, 0.4);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 40px rgba(0, 245, 255, 0.15);
+    }
+
+    .stat-num {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--cyan);
+      font-family: 'Orbitron', monospace;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--dim);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 4rem 2rem;
+      border-bottom: 2px solid rgba(0, 245, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.05), transparent);
+      animation: shimmer 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes shimmer {
+      0% { left: -100%; }
+      50% { left: 100%; }
+      100% { left: 100%; }
+    }
+
+    .section-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 900;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 30px rgba(0, 245, 255, 0.2);
+    }
+
+    .section-desc {
+      font-size: 15px;
+      color: var(--text);
+      letter-spacing: 0.05em;
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+      line-height: 1.8;
+    }
+
+    /* MISSION CARDS */
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .mission-card {
+      background: linear-gradient(135deg, rgba(0, 245, 255, 0.08) 0%, rgba(168, 85, 247, 0.05) 100%);
+      border: 2px solid rgba(0, 245, 255, 0.3);
+      border-radius: 12px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+    }
+
+    .mission-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mission-card:hover {
+      border-color: var(--cyan);
+      background: linear-gradient(135deg, rgba(0, 245, 255, 0.15) 0%, rgba(168, 85, 247, 0.1) 100%);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(0, 245, 255, 0.2);
+    }
+
+    .mission-card:hover::before {
+      opacity: 1;
+    }
+
+    .mc-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      background: rgba(0, 245, 255, 0.15);
+      border: 2px solid rgba(0, 245, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .mission-card:hover .mc-icon {
+      background: rgba(0, 245, 255, 0.25);
+      border-color: var(--cyan);
+      box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .mc-icon svg {
+      width: 24px;
+      height: 24px;
+      filter: drop-shadow(0 0 5px rgba(0, 245, 255, 0.3));
+    }
+
+    .mc-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .mc-desc {
+      font-size: 13px;
+      color: var(--dim);
+      line-height: 1.7;
+      letter-spacing: 0.03em;
+    }
+
+    /* TEAM */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .member-card {
+      background: linear-gradient(135deg, rgba(0, 245, 255, 0.08) 0%, rgba(168, 85, 247, 0.05) 100%);
+      border: 2px solid rgba(0, 245, 255, 0.3);
+      border-radius: 12px;
+      padding: 1.8rem;
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .member-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 245, 255, 0.1) 0%, transparent 70%);
+      animation: memberGlow 3s ease-in-out infinite;
+      opacity: 0;
+    }
+
+    .member-card:hover::before {
+      opacity: 1;
+    }
+
+    @keyframes memberGlow {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(10px, 10px); }
+    }
+
+    .member-card:hover {
+      border-color: var(--cyan);
+      background: linear-gradient(135deg, rgba(0, 245, 255, 0.15) 0%, rgba(168, 85, 247, 0.1) 100%);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(0, 245, 255, 0.2);
+    }
+
+    .avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 3px solid var(--cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-family: 'Orbitron', monospace;
+      font-size: 24px;
+      font-weight: 900;
+      color: #fff;
+      background: linear-gradient(135deg, rgba(0, 245, 255, 0.2), rgba(168, 85, 247, 0.2));
+      box-shadow: 0 0 30px rgba(0, 245, 255, 0.3), inset 0 0 20px rgba(0, 245, 255, 0.1);
+      position: relative;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+
+    .member-card:hover .avatar {
+      box-shadow: 0 0 50px rgba(0, 245, 255, 0.5), inset 0 0 30px rgba(0, 245, 255, 0.2);
+      transform: scale(1.1);
+    }
+
+    .member-name {
+      font-family: 'Orbitron', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .member-role {
+      font-size: 11px;
+      color: var(--cyan);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-weight: 600;
+    }
+
+    .member-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .tag {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: rgba(0, 245, 255, 0.1);
+      border: 1px solid rgba(0, 245, 255, 0.3);
+      color: var(--dim);
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .tag:hover {
+      background: rgba(0, 245, 255, 0.2);
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    /* OPERATIONS */
+    .ops-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .op-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: linear-gradient(135deg, rgba(0, 245, 255, 0.08) 0%, rgba(168, 85, 247, 0.05) 100%);
+      border: 2px solid rgba(0, 245, 255, 0.2);
+      border-radius: 10px;
+      padding: 1.2rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .op-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 3px;
+      background: linear-gradient(180deg, var(--cyan), var(--purple));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .op-item:hover {
+      border-color: var(--cyan);
+      background: linear-gradient(135deg, rgba(0, 245, 255, 0.15) 0%, rgba(168, 85, 247, 0.1) 100%);
+      transform: translateX(8px);
+      box-shadow: 0 10px 40px rgba(0, 245, 255, 0.15);
+    }
+
+    .op-item:hover::before {
+      opacity: 1;
+    }
+
+    .op-status {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    .op-status.active {
+      background: var(--accent);
+      box-shadow: 0 0 15px var(--accent);
+      animation: pulse-dot 1.5s ease-in-out infinite;
+    }
+
+    .op-status.done {
+      background: var(--dim);
+    }
+
+    .op-status.pending {
+      background: #ffaa00;
+      box-shadow: 0 0 10px #ffaa0066;
+    }
+
+    .op-name {
+      font-family: 'Orbitron', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      flex: 1;
+    }
+
+    .op-meta {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      color: var(--dim);
+      letter-spacing: 0.1em;
+    }
+
+    .op-badge {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-family: 'Share Tech Mono', monospace;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+
+    .op-badge.success {
+      background: rgba(0, 255, 136, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(0, 255, 136, 0.4);
+    }
+
+    .op-badge.active2 {
+      background: rgba(0, 245, 255, 0.15);
+      color: var(--cyan);
+      border: 1px solid rgba(0, 245, 255, 0.4);
+    }
+
+    .op-badge.pending2 {
+      background: rgba(255, 170, 0, 0.15);
+      color: #ffaa00;
+      border: 1px solid rgba(255, 170, 0, 0.4);
+    }
+
+    /* TERMINAL */
+    .terminal-block {
+      background: rgba(2, 10, 14, 0.8);
+      border: 2px solid rgba(0, 245, 255, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 13px;
+      color: var(--accent);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(0, 245, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .terminal-block:hover {
+      border-color: var(--cyan);
+      box-shadow: 0 0 50px rgba(0, 245, 255, 0.2);
+    }
+
+    .t-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid rgba(0, 245, 255, 0.2);
+    }
+
+    .t-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    .t-line {
+      color: var(--dim);
+      line-height: 2;
+      letter-spacing: 0.05em;
+    }
+
+    .t-line span {
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    .t-cursor {
+      display: inline-block;
+      width: 8px;
+      height: 1em;
+      background: var(--accent);
+      animation: tc 0.8s step-end infinite;
+      vertical-align: text-bottom;
+      margin-left: 2px;
+    }
+
+    @keyframes tc {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      background: rgba(2, 11, 16, 0.9);
+      border-top: 2px solid rgba(0, 245, 255, 0.2);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      opacity: 0.5;
+    }
+
+    .footer-logo {
+      font-family: 'Orbitron', monospace;
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--cyan);
+      letter-spacing: 0.15em;
+      text-shadow: 0 0 15px rgba(0, 245, 255, 0.3);
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--dim);
+      letter-spacing: 0.1em;
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.8rem;
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      color: var(--dim);
+      text-decoration: none;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .footer-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--cyan);
+      transition: width 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--cyan);
+      text-shadow: 0 0 10px rgba(0, 245, 255, 0.3);
+    }
+
+    .footer-links a:hover::after {
+      width: 100%;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav {
+        padding: 0 1.5rem;
+        height: 60px;
+      }
+
+      .nav-links {
+        gap: 1.2rem;
+      }
+
+      .nav-links a {
+        font-size: 11px;
+      }
+
+      .hero {
+        padding: 120px 1.5rem 60px;
+      }
+
+      .hero h1 {
+        font-size: clamp(32px, 8vw, 56px);
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      section {
+        padding: 3rem 1.5rem;
+      }
+
+      .mission-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-links {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="animated-bg"></div>
+
+  <div class="site">
+    <!-- NAV -->
+    <nav>
+      <div class="nav-logo">SELIUM<span>::</span>DEV</div>
+      <div class="nav-links">
+        <a href="#mission">Mission</a>
+        <a href="#team">Team</a>
+        <a href="#ops">Operations</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="nav-status">
+        <div class="dot"></div>
+        SYSTEMS ONLINE
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">// Cyber Security Division — Est. 2021</div>
+        <h1>We Are<br><span>SELIUM</span></h1>
+        <div class="hero-sub">Defending the world one exploit at a time|Isralis HACKERS</div>
+        <div class="hero-btns">
+          <button class="btn-primary">Our Mission</button>
+          <button class="btn-ghost">Join the Team</button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num" id="s1">0</div>
+            <div class="stat-label">Threats Neutralized</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num" id="s2">0</div>
+            <div class="stat-label">Systems Protected</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num" id="s3">0</div>
+            <div class="stat-label">Active Members</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num" id="s4">0</div>
+            <div class="stat-label">Countries Covered</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MISSION -->
+    <section id="mission">
+      <div class="section-content">
+        <div class="section-tag">// 01 — Who We Are</div>
+        <div class="section-title">Our Mission</div>
+        <div class="section-desc">Selium Development is an elite cyber security group dedicated to protecting civilians, organizations and infrastructure from digital threats worldwide.</div>
+        <div class="mission-grid">
+          <div class="mission-card">
+            <div class="mc-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="mc-title">Threat Defense</div>
+            <div class="mc-desc">Real-time monitoring and neutralization of cyber threats targeting critical infrastructure.</div>
+          </div>
+          <div class="mission-card">
+            <div class="mc-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            <div class="mc-title">Rapid Response</div>
+            <div class="mc-desc">24/7 incident response team deployed within minutes of any detected breach.</div>
+          </div>
+          <div class="mission-card">
+            <div class="mc-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="mc-title">Global Reach</div>
+            <div class="mc-desc">Operating across multiple continents with localized threat intelligence and response.</div>
+          </div>
+          <div class="mission-card">
+            <div class="mc-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 12l2 2 4-4m7 0a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="mc-title">Compliance</div>
+            <div class="mc-desc">Full compliance with international security standards and regulations.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team">
+      <div class="section-content">
+        <div class="section-tag">// 02 — Our Team</div>
+        <div class="section-title">Elite Operatives</div>
+        <div class="section-desc">Handpicked experts in cybersecurity, threat analysis, and incident response.</div>
+        <div class="team-grid">
+          <div class="member-card">
+            <div class="avatar">AX</div>
+            <div class="member-name">Alex Chen</div>
+            <div class="member-role">Lead Analyst</div>
+            <div class="member-tags">
+              <span class="tag">Threat Intel</span>
+              <span class="tag">Malware</span>
+            </div>
+          </div>
+          <div class="member-card">
+            <div class="avatar">JK</div>
+            <div class="member-name">James Knight</div>
+            <div class="member-role">Incident Commander</div>
+            <div class="member-tags">
+              <span class="tag">Response</span>
+              <span class="tag">Forensics</span>
+            </div>
+          </div>
+          <div class="member-card">
+            <div class="avatar">SR</div>
+            <div class="member-name">Sarah Rodriguez</div>
+            <div class="member-role">Penetration Tester</div>
+            <div class="member-tags">
+              <span class="tag">Pentesting</span>
+              <span class="tag">Exploit</span>
+            </div>
+          </div>
+          <div class="member-card">
+            <div class="avatar">MV</div>
+            <div class="member-name">Marcus Vega</div>
+            <div class="member-role">Network Security</div>
+            <div class="member-tags">
+              <span class="tag">Infrastructure</span>
+              <span class="tag">Defense</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPERATIONS -->
+    <section id="ops">
+      <div class="section-content">
+        <div class="section-tag">// 03 — Active Operations</div>
+        <div class="section-title">Current Status</div>
+        <div class="section-desc">Real-time operational status and deployment information.</div>
+        <div class="ops-list">
+          <div class="op-item">
+            <div class="op-status active"></div>
+            <div class="op-name">Global Threat Monitoring</div>
+            <div class="op-meta">APAC Region</div>
+            <span class="op-badge success">ACTIVE</span>
+          </div>
+          <div class="op-item">
+            <div class="op-status active"></div>
+            <div class="op-name">Ransomware Detection Network</div>
+            <div class="op-meta">EU & Americas</div>
+            <span class="op-badge active2">MONITORING</span>
+          </div>
+          <div class="op-item">
+            <div class="op-status pending"></div>
+            <div class="op-name">Zero-Day Vulnerability Research</div>
+            <div class="op-meta">Advanced Labs</div>
+            <span class="op-badge pending2">PENDING</span>
+          </div>
+          <div class="op-item">
+            <div class="op-status active"></div>
+            <div class="op-name">Critical Infrastructure Protection</div>
+            <div class="op-meta">24/7 Deployment</div>
+            <span class="op-badge success">ACTIVE</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TERMINAL -->
+    <section>
+      <div class="section-content">
+        <div class="section-tag">// 04 — System Log</div>
+        <div class="section-title">Latest Activity</div>
+        <div class="terminal-block">
+          <div class="t-header">
+            <div class="t-dot"></div>
+            <span>selium-@security-ops:~$</span>
+          </div>
+          <div class="t-line">$ <span>./threat_analysis --global --realtime</span></div>
+          <div class="t-line">Initializing threat detection matrix...</div>
+          <div class="t-line">Connected to <span>47 monitoring stations</span></div>
+          <div class="t-line">Scanning <span>2.3M+ endpoints</span> for anomalies</div>
+          <div class="t-line">Threat level: <span>[████████░░] 82%</span></div>
+          <div class="t-line">Active incidents: <span>12</span> | Resolved: <span>847</span></div>
+          <div class="t-line">$ <span class="t-cursor"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+      <div class="footer-logo">SELIUM :: DEV</div>
+      <div class="footer-copy">© 2024 Selium Development. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Security</a>
+        <a href="#">Contact</a>
+        <a href="#">Careers</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Animate stats on page load
+    function animateStats() {
+      const stats = [
+        { id: 's1', target: 2847 },
+        { id: 's2', target: 15430 },
+        { id: 's3', target: 342 },
+        { id: 's4', target: 89 }
+      ];
+
+      stats.forEach(stat => {
+        const element = document.getElementById(stat.id);
+        let current = 0;
+        const increment = stat.target / 50;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= stat.target) {
+            element.textContent = stat.target.toLocaleString();
+            clearInterval(timer);
+          } else {
+            element.textContent = Math.floor(current).toLocaleString();
+          }
+        }, 30);
+      });
+    }
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 0.8s ease-out';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Animate stats when page loads
+    window.addEventListener('load', animateStats);
+  </script>
+</body>
+</html>
